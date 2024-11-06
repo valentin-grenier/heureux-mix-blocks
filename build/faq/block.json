@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "title": "FAQ",
   "category": "widgets",
-  "icon": "list",
+  "icon": "format-audio",
   "description": "FAQ block to display Question custom post type items",
   "example": {},
   "keywords": [
