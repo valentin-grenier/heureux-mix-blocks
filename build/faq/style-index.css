@@ -11,8 +11,8 @@
   margin: 0;
 }
 .wp-block-heureux-mix-faq .faq__item {
-  padding-bottom: 1rem;
-  margin-bottom: 1.25rem;
+  padding: 0.75rem 0;
+  margin-bottom: 0.75rem;
   border-bottom: 1px solid rgba(37, 43, 51, 0.3137254902);
 }
 .wp-block-heureux-mix-faq .faq__item.is-opened .faq__question:after {
