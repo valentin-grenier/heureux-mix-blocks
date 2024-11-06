@@ -15,6 +15,12 @@
   margin-bottom: 1.25rem;
   border-bottom: 1px solid rgba(37, 43, 51, 0.3137254902);
 }
+.wp-block-heureux-mix-faq .faq__item.is-opened .faq__question:after {
+  content: "-";
+}
+.wp-block-heureux-mix-faq .faq__item.is-opened .faq__answer {
+  max-height: 800px;
+}
 .wp-block-heureux-mix-faq .faq__question {
   display: flex;
   justify-content: space-between;
@@ -30,4 +36,10 @@
 }
 .wp-block-heureux-mix-faq .faq__answer {
   margin-top: 0.5rem;
+  max-height: 0;
+  transition: all 800ms ease;
+  overflow: hidden;
+}
+.wp-block-heureux-mix-faq .faq__answer.is-opened {
+  max-height: 800px;
 }

@@ -52,9 +52,10 @@ function heureux_mix_blocks_render_faq($attributes)
 		$question_title = esc_html($question->post_title);
 		$question_content = apply_filters('the_content', $question->post_content);
 
-		$markup .= '<div data-wp-interactive="faqToggle"' . $context . ' data-wp-watch="callbacks.logIsOpen" class="faq__item">';
+		$markup .= '<div data-wp-interactive="faqToggle"' . $context . ' data-wp-watch="callbacks.logIsOpen" data-wp-class--is-opened="context.isOpen" class="faq__item">';
 		$markup .= '<span data-wp-on--click="actions.toggle" class="faq__question">' . $question_title . '</span>';
-		$markup .= '<div class="faq__answer" data-wp-bind--hidden="!context.isOpen">' . $question_content . '</div>';
+		//$markup .= '<div class="faq__answer" data-wp-bind--hidden="!context.isOpen">' . $question_content . '</div>';
+		$markup .= '<div class="faq__answer">' . $question_content . '</div>';
 		$markup .= '</div>';
 	}
 	$markup .= '</div>';
