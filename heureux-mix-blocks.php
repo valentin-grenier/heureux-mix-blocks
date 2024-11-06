@@ -38,18 +38,21 @@ function heureux_mix_blocks_render_faq($attributes)
 		'post_type' => 'question',
 		'posts_per_page' => 5
 	);
+
 	$questions = get_posts($args);
+
 	if (count($questions) == 0) {
 		return __("Désolé, il n'y a pas encore de questions à afficher.", "heureux-mix");
 	}
+
 	$markup = '<div class="wp-block-heureux-mix-faq">';
 	foreach ($questions as $question) {
 		$question_title = esc_html($question->post_title);
 		$question_content = apply_filters('the_content', $question->post_content);
 
-		$markup .= '<div class="faq__item">';
-		$markup .= '<span class="faq__question">' . $question_title . '</span>';
-		$markup .= '<div class="faq__answer">' . $question_content . '</div>';
+		$markup .= '<div data-wp-interactive="faqToggle" class="faq__item">';
+		$markup .= '<span data-wp-on--click="actions.toggle" class="faq__question">' . $question_title . '</span>';
+		$markup .= '<div class="faq__answer" style="display: none">' . $question_content . '</div>';
 		$markup .= '</div>';
 	}
 	$markup .= '</div>';
