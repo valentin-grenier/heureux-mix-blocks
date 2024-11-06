@@ -45,14 +45,16 @@ function heureux_mix_blocks_render_faq($attributes)
 		return __("Désolé, il n'y a pas encore de questions à afficher.", "heureux-mix");
 	}
 
+	$context = wp_interactivity_data_wp_context(array('isOpen' => false));
+
 	$markup = '<div class="wp-block-heureux-mix-faq">';
 	foreach ($questions as $question) {
 		$question_title = esc_html($question->post_title);
 		$question_content = apply_filters('the_content', $question->post_content);
 
-		$markup .= '<div data-wp-interactive="faqToggle" class="faq__item">';
+		$markup .= '<div data-wp-interactive="faqToggle"' . $context . ' data-wp-watch="callbacks.logIsOpen" class="faq__item">';
 		$markup .= '<span data-wp-on--click="actions.toggle" class="faq__question">' . $question_title . '</span>';
-		$markup .= '<div class="faq__answer" style="display: none">' . $question_content . '</div>';
+		$markup .= '<div class="faq__answer" data-wp-bind--hidden="!context.isOpen">' . $question_content . '</div>';
 		$markup .= '</div>';
 	}
 	$markup .= '</div>';

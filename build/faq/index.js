@@ -198,7 +198,7 @@ module.exports = window["wp"]["data"];
   \****************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"heureux-mix/faq","version":"0.1.0","title":"FAQ","category":"widgets","icon":"list","description":"FAQ block to display Question custom post type items","example":{},"keywords":["FAQ","faq","question"],"supports":{"html":false,"interactivity":true},"textdomain":"heureux-mix","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScriptModule":"file:./view.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"heureux-mix/faq","version":"0.1.0","title":"FAQ","category":"widgets","icon":"list","description":"FAQ block to display Question custom post type items","example":{},"keywords":["FAQ","faq","question"],"supports":{"html":false,"interactivity":true},"textdomain":"heureux-mix","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScriptModule":"file:./view.js"}');
 
 /***/ })
 
