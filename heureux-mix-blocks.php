@@ -18,6 +18,10 @@ if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+	require __DIR__ . '/vendor/autoload.php';
+}
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
@@ -28,6 +32,7 @@ if (! defined('ABSPATH')) {
 function heureux_mix_blocks_init()
 {
 	register_block_type(__DIR__ . '/build/faq', ['render_callback' => 'heureux_mix_blocks_render_faq']);
+	register_block_type(__DIR__ . '/build/quick-access', ['render_callback' => 'heureux_mix_blocks_render_quick_access']);
 }
 add_action('init', 'heureux_mix_blocks_init');
 
@@ -60,4 +65,26 @@ function heureux_mix_blocks_render_faq($attributes)
 	}
 	$markup .= '</div>';
 	return $markup;
+}
+
+// == Server-side rendering for Quick Access block
+function heureux_mix_blocks_render_quick_access($attributes)
+{
+	// Retrieve and parse blocks from post content
+	$blocks = parse_blocks(get_the_content());
+
+	// Initialize an array for storing <h2> headings
+	$headings = [];
+
+
+	// Loop through blocks to find <h2> headings
+	foreach ($blocks as $block) {
+		if ($block['blockName'] === 'core/heading' && $block['attrs']['level'] === 2) {
+			$headings[] = $block['innerHTML'];
+		} else {
+			$heading[] = 'No heading found';
+		}
+	}
+
+	return $heading[0];
 }
