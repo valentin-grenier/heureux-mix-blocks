@@ -5,13 +5,19 @@
 	"version": "0.1.0",
 	"title": "FAQ",
 	"category": "widgets",
-	"icon": "list",
+	"icon": "screenoptions",
 	"description": "FAQ block to display Question custom post type items",
 	"example": {},
 	"keywords": ["FAQ", "faq", "question"],
 	"supports": {
 		"html": false,
 		"interactivity": true
+	},
+	"attributes": {
+		"taxonomy": {
+			"type": "string",
+			"default": "all"
+		}
 	},
 	"textdomain": "heureux-mix",
 	"editorScript": "file:./index.js",

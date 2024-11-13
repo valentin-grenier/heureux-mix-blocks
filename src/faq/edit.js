@@ -1,21 +1,75 @@
 import "./editor.scss";
 
-import { useBlockProps } from "@wordpress/block-editor";
-import { useSelect } from "@wordpress/data";
-import { Spinner } from "@wordpress/components";
+import { __ } from "@wordpress/i18n";
+import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
+import { useSelect, useDispatch } from "@wordpress/data";
+import { Spinner, SelectControl, PanelBody } from "@wordpress/components";
+import { useEffect } from "@wordpress/element";
 
 export default function Edit(props) {
 	const blockProps = useBlockProps();
+	const { attributes, setAttributes } = props;
+	const { taxonomy } = attributes;
+	let selectOptions = [];
 
-	// == Dynamic "question" post type fetch
-	const questions = useSelect((select) => {
-		return select("core").getEntityRecords("postType", "question", {
-			per_page: 3,
+	// == Taxonomy "question-taxonomy" fetch
+	const questionTaxonomy = useSelect((select) => {
+		return select("core").getEntityRecords("taxonomy", "question-taxonomy", {
+			per_page: -1,
 		});
 	});
 
-	// == Debug
-	console.log(questions);
+	// == Dynamic "question" post type fetch with taxonomy filter
+	const questions = useSelect(
+		(select) => {
+			if (taxonomy === "all") {
+				// If no taxonomy is selected, fetch all questions
+				return select("core").getEntityRecords("postType", "question", {
+					per_page: -1,
+					status: "publish",
+				});
+			}
+			// Fetch questions filtered by the selected taxonomy
+			return select("core").getEntityRecords("postType", "question", {
+				per_page: -1,
+				status: "publish",
+				["question-taxonomy"]: taxonomy, // Filter by taxonomy
+			});
+		},
+		[taxonomy],
+	);
+
+	// == Populate options for SearchControl
+
+	if (questionTaxonomy) {
+		selectOptions.push({ value: "all", label: "All" });
+		questionTaxonomy.forEach((taxonomy) => {
+			selectOptions.push({ value: taxonomy.id, label: taxonomy.name });
+		});
+	} else {
+		selectOptions.push({ value: 0, label: "Loading..." });
+	}
+
+	// == Handle taxonomy selection change
+	const onTaxonomyChange = (selectedTaxonomy) => {
+		setAttributes({
+			taxonomy: selectedTaxonomy !== 0 ? selectedTaxonomy : null,
+		});
+	};
+
+	// == Create InspectorControls
+	const inspectorControls = (
+		<InspectorControls>
+			<PanelBody title="FAQ Settings">
+				<SelectControl
+					value={taxonomy || 0}
+					options={selectOptions}
+					label={__("Taxonomy filters", "heureux-mix")}
+					onChange={onTaxonomyChange}
+				/>
+			</PanelBody>
+		</InspectorControls>
+	);
 
 	// == Conditional rendering: API has not returned data yet
 	if (!questions) {
@@ -38,6 +92,8 @@ export default function Edit(props) {
 	// == Conditional rendering: API returned data
 	return (
 		<div {...blockProps}>
+			{inspectorControls}
+
 			{questions.map((question) => (
 				<div className="faq__item" key={question.id}>
 					<span className="faq__question">{question.title.raw}</span>

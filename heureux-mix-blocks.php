@@ -39,11 +39,25 @@ add_action('init', 'heureux_mix_blocks_init');
 // == Server side rendering for FAQ block
 function heureux_mix_blocks_render_faq($attributes)
 {
+	// == Default query arguments
 	$args = array(
 		'post_type' => 'question',
-		'posts_per_page' => 5
+		'posts_per_page' => -1,
+		'post_status' => 'publish',
 	);
 
+	// == Check if a taxonomy is selected in block attributes and add it to the query
+	if ($attributes['taxonomy'] !== "all") {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'question-taxonomy',
+				'field' => 'term_id',
+				'terms' => $attributes['taxonomy'],
+			),
+		);
+	}
+
+	// == Fetch filtered questions
 	$questions = get_posts($args);
 
 	if (count($questions) == 0) {
