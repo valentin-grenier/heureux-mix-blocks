@@ -5,53 +5,17 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-heureux-mix-faq {
-	p {
+.wp-block-heureux-mix-table-of-contents {
+	ul {
 		margin: 0;
-	}
+		padding: 0;
+		list-style: none;
 
-	.faq {
-		&__item {
-			padding: 0.75rem 0;
-			margin-bottom: 0.75rem;
-			border-bottom: 1px solid #252b3350;
-
-			&.is-opened {
-				.faq__question {
-					&:after {
-						content: "-";
-					}
-				}
-
-				.faq__answer {
-					max-height: 800px;
-				}
-			}
-		}
-
-		&__question {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			font-weight: bold;
-			width: 100%;
-			cursor: pointer;
-
-			&:after {
-				content: "+";
-				font-weight: bold;
-				font-size: 1.25rem;
-			}
-		}
-
-		&__answer {
-			margin-top: 0.5rem;
-			max-height: 0;
-			transition: all 800ms ease;
-			overflow: hidden;
-
-			&.is-opened {
-				max-height: 800px;
+		li {
+			a {
+				text-decoration: none;
+				font-weight: 400;
+				color: var(--wp--preset--color--text);
 			}
 		}
 	}

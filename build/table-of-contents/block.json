@@ -1,18 +1,19 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "heureux-mix/quick-access",
+  "name": "heureux-mix/table-of-contents",
   "version": "0.1.0",
-  "title": "Accès rapide",
+  "title": "Sommaire",
   "category": "widgets",
   "icon": "admin-links",
   "description": "Dynamic block that fetches all h2 from page content to create a quick access section",
   "example": {},
   "keywords": [
-    "quick access",
-    "accès rapide",
+    "sommaire",
+    "table des matières",
     "table of content",
-    "sommaire"
+    "summary",
+    "quick access"
   ],
   "supports": {
     "html": false,

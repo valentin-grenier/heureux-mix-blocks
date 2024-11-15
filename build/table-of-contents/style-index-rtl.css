@@ -7,39 +7,13 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-heureux-mix-faq p {
+.wp-block-heureux-mix-table-of-contents ul {
   margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.wp-block-heureux-mix-faq .faq__item {
-  padding: 0.75rem 0;
-  margin-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(37, 43, 51, 0.3137254902);
-}
-.wp-block-heureux-mix-faq .faq__item.is-opened .faq__question:after {
-  content: "-";
-}
-.wp-block-heureux-mix-faq .faq__item.is-opened .faq__answer {
-  max-height: 800px;
-}
-.wp-block-heureux-mix-faq .faq__question {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  width: 100%;
-  cursor: pointer;
-}
-.wp-block-heureux-mix-faq .faq__question:after {
-  content: "+";
-  font-weight: bold;
-  font-size: 1.25rem;
-}
-.wp-block-heureux-mix-faq .faq__answer {
-  margin-top: 0.5rem;
-  max-height: 0;
-  transition: all 800ms ease;
-  overflow: hidden;
-}
-.wp-block-heureux-mix-faq .faq__answer.is-opened {
-  max-height: 800px;
+.wp-block-heureux-mix-table-of-contents ul li a {
+  text-decoration: none;
+  font-weight: 400;
+  color: var(--wp--preset--color--text);
 }

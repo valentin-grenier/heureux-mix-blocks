@@ -4,6 +4,12 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-create-block-heureux-mix-blocks {
-	border: 1px dotted #f00;
+.wp-block-heureux-mix-table-of-contents {
+	background: #e6e6e6;
+	padding: 0.5rem 1rem;
+	border-radius: 6px;
+
+	p {
+		margin: 0;
+	}
 }

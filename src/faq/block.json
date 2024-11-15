@@ -8,7 +8,7 @@
 	"icon": "screenoptions",
 	"description": "FAQ block to display Question custom post type items",
 	"example": {},
-	"keywords": ["FAQ", "faq", "question"],
+	"keywords": [ "FAQ", "faq", "question" ],
 	"supports": {
 		"html": false,
 		"interactivity": true

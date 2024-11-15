@@ -100,7 +100,9 @@ export default function Edit(props) {
 
 					<div
 						className="faq__answer"
-						dangerouslySetInnerHTML={{ __html: question.content.rendered }}
+						dangerouslySetInnerHTML={{
+							__html: question.content.rendered,
+						}}
 					/>
 				</div>
 			))}
