@@ -1,0 +1,1 @@
+{"version":3,"file":"custom-navigation/index.css","mappings":";;;AACC;EACC;AAAF,C","sources":["webpack://heureux-mix-blocks/./src/custom-navigation/editor.scss"],"sourcesContent":[".wp-block-heureux-mix-custom-navigation {\n\t&__content {\n\t\tdisplay: none;\n\t}\n}\n"],"names":[],"sourceRoot":""}

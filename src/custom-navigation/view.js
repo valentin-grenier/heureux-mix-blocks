@@ -1,10 +1,10 @@
 import { store, getContext } from "@wordpress/interactivity";
 
-store("faqToggle", {
+store("burgerToggle", {
 	actions: {
 		toggle: () => {
 			const context = getContext();
-			context.isOpen = !context.isOpen;
+			context.isVisible = !context.isVisible;
 		},
 	},
 });

@@ -33,6 +33,7 @@ function heureux_mix_blocks_init()
 {
 	register_block_type(__DIR__ . '/build/faq', ['render_callback' => 'heureux_mix_blocks_render_faq']);
 	register_block_type(__DIR__ . '/build/table-of-contents', ['render_callback' => 'heureux_mix_blocks_render_table_of_contents']);
+	register_block_type(__DIR__ . '/build/custom-navigation', ['render_callback' => 'heureux_mix_blocks_render_custom_navigation']);
 }
 add_action('init', 'heureux_mix_blocks_init');
 
@@ -108,6 +109,40 @@ function heureux_mix_blocks_render_table_of_contents($attributes)
 	$table_of_contents .= '</div>';
 
 	return $table_of_contents;
+}
+
+// == Server-side rendering for Custom Navigation block
+function heureux_mix_blocks_render_custom_navigation($attributes)
+{
+	$buttonText = $attributes['buttonText'];
+	$menuId = $attributes['menuId'];
+
+	// == Get the menu by its ID
+	$menu = get_post($menuId);
+
+	// == Get the menu content
+	$menuContent = ($menu) ? apply_filters('the_content', $menu->post_content) : 'No menu found.';
+
+	// == Build the markup
+	$markup = sprintf(
+		'<div class="wp-block-heureux-mix-custom-navigation" data-wp-interactive="burgerToggle" data-wp-context="{ "isVisible": false }">
+            <button class="wp-block-heureux-mix-custom-navigation__button" data-wp-on--click="actions.toggle">
+                %s
+				<img src="%s" alt="burger icon"/>
+            </button>
+            <div class="wp-block-heureux-mix-custom-navigation__content" data-wp-interactive="burgerToggle" data-wp-class--is-visible="context.isVisible">
+                <div class="wp-block-heureux-mix-custom-navigation__menu">
+					<ul class="wp-block-navigation-menu">%s</ul>
+                </div>
+				<div class="wp-block-heureux-mix-custom-navigation__logo" data-wp-class--is-visible="context.isVisible"></div>
+            </div>
+        </div>',
+		esc_html($buttonText),
+		esc_url(plugins_url('src/custom-navigation/assets/burger-icon.svg', __FILE__)),
+		wp_kses_post($menuContent) // Escape menu content while allowing HTML
+	);
+
+	return $markup;
 }
 
 // == On single post, get the content, parse heading and add an anchor to each heading

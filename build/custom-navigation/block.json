@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "heureux-mix/custom-navigation",
+  "version": "0.1.0",
+  "title": "Custom navigation",
+  "category": "heureux-mix",
+  "icon": "navigation",
+  "description": "Custom navigation for L'Heureux Mix block theme",
+  "example": {},
+  "keywords": [
+    "header",
+    "navigation",
+    "en-tête",
+    "menu"
+  ],
+  "supports": {
+    "html": false,
+    "interactivity": true
+  },
+  "attributes": {
+    "buttonText": {
+      "type": "string",
+      "default": "Menu"
+    },
+    "menuId": {
+      "type": "string"
+    }
+  },
+  "textdomain": "heureux-mix",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScriptModule": "file:./view.js"
+}
