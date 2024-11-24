@@ -64,6 +64,11 @@ __webpack_require__.r(__webpack_exports__);
     toggle: () => {
       const context = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)();
       context.isVisible = !context.isVisible;
+      if (context.isVisible) {
+        document.documentElement.style.overflow = "hidden";
+      } else {
+        document.documentElement.style.overflow = "auto";
+      }
     }
   }
 });

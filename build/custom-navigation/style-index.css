@@ -63,6 +63,7 @@
 .wp-block-heureux-mix-custom-navigation__menu ul li a {
   font-size: 3.5rem;
   font-family: var(--wp--preset--font-family--p-22-pooperblackpro);
+  font-weight: 400;
   text-decoration: none;
   color: var(--wp--preset--color--text);
   text-align: end;
@@ -91,6 +92,47 @@
 }
 .wp-block-heureux-mix-custom-navigation__logo img {
   width: 100%;
+}
+@media screen and (max-width: 1024px) {
+  .wp-block-heureux-mix-custom-navigation__menu ul li a {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .wp-block-heureux-mix-custom-navigation__menu {
+    transform: translate(-50%, -50%);
+  }
+  .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-menu, .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu {
+    align-items: center;
+  }
+  .wp-block-heureux-mix-custom-navigation__menu ul li.has-child {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    text-align: center;
+  }
+  .wp-block-heureux-mix-custom-navigation__menu ul li a {
+    font-size: 3rem;
+    text-align: center;
+    text-wrap: nowrap;
+  }
+  .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu {
+    position: relative;
+    left: 0;
+    gap: 1.5rem;
+  }
+  .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li a {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 576px) {
+  .wp-block-heureux-mix-custom-navigation__menu ul li a {
+    font-size: 2rem;
+  }
+  .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li a {
+    font-size: 1.75rem;
+  }
 }
 
 /*# sourceMappingURL=style-index.css.map*/

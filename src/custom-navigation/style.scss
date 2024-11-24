@@ -66,6 +66,7 @@
 				a {
 					font-size: 3.5rem;
 					font-family: var(--wp--preset--font-family--p-22-pooperblackpro);
+					font-weight: 400;
 					text-decoration: none;
 					color: var(--wp--preset--color--text);
 					text-align: end;
@@ -104,6 +105,79 @@
 
 		img {
 			width: 100%;
+		}
+	}
+
+	@media screen and (max-width: 1024px) {
+		&__menu {
+			ul {
+				li {
+					a {
+						font-size: 2.5rem;
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		&__menu {
+			transform: translate(-50%, -50%);
+
+			ul {
+				&.wp-block-navigation-menu,
+				&.wp-block-navigation-submenu {
+					align-items: center;
+				}
+
+				li {
+					&.has-child {
+						flex-direction: column;
+						justify-content: center;
+						gap: 2rem;
+						text-align: center;
+					}
+
+					a {
+						font-size: 3rem;
+						text-align: center;
+						text-wrap: nowrap;
+					}
+				}
+
+				&.wp-block-navigation-submenu {
+					position: relative;
+					left: 0;
+					gap: 1.5rem;
+
+					li {
+						a {
+							font-size: 2.5rem;
+							text-align: center;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: 576px) {
+		&__menu {
+			ul {
+				li {
+					a {
+						font-size: 2rem;
+					}
+				}
+
+				&.wp-block-navigation-submenu {
+					li {
+						a {
+							font-size: 1.75rem;
+						}
+					}
+				}
+			}
 		}
 	}
 }
