@@ -7,6 +7,16 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.wp-block-heureux-mix-table-of-contents {
+  padding: var(--wp--preset--spacing--sm);
+  background-color: var(--wp--preset--color--background);
+  border-radius: var(--wp--custom--radius-sm);
+}
+.wp-block-heureux-mix-table-of-contents span {
+  font-size: var(--wp--preset--font-size--base-plus);
+  font-weight: 700;
+  color: var(--wp--preset--color--secondary);
+}
 .wp-block-heureux-mix-table-of-contents ul {
   margin: 0;
   padding: 0;

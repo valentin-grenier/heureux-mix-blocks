@@ -14,6 +14,8 @@
  * @package StudioVal
  */
 
+use function Avifinfo\read;
+
 if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
@@ -85,21 +87,24 @@ function heureux_mix_blocks_render_faq($attributes)
 // == Server-side rendering for Quick Access block
 function heureux_mix_blocks_render_table_of_contents($attributes)
 {
-	// Retrieve and parse blocks from post content
+	# Retrieve and parse blocks from post content
 	$blocks = parse_blocks(get_the_content());
 
-	// Initialize an array for storing <h2> headings
+	# Initialize an array for storing <h2> headings
 	$headings = [];
 
-
-	// Loop through blocks to find <h2> headings
+	# Loop through blocks to find <h2> headings
 	foreach ($blocks as $block) {
 		if ($block['blockName'] === 'core/heading' && strpos($block['innerContent'][0], '<h2') !== false) {
 			$headings[] = $block['innerContent'][0];
 		}
 	}
 
+	# If no <h2> headings are found, return an empty string
+	if (!$headings) return;
+
 	$table_of_contents = '<div class="wp-block-heureux-mix-table-of-contents">';
+	$table_of_contents .= '<span>' . __("Plan de l'article", "heureux-mix") . '</span>';
 	$table_of_contents .= '<ul>';
 	foreach ($headings as $heading) {
 		$heading = strip_tags($heading);
@@ -117,13 +122,13 @@ function heureux_mix_blocks_render_custom_navigation($attributes)
 	$buttonText = $attributes['buttonText'];
 	$menuId = $attributes['menuId'];
 
-	// == Get the menu by its ID
+	# Get the menu by its ID
 	$menu = get_post($menuId);
 
-	// == Get the menu content
+	# Get the menu content
 	$menuContent = ($menu) ? apply_filters('the_content', $menu->post_content) : 'No menu found.';
 
-	// == Build the markup
+	# Build the markup
 	$markup = sprintf(
 		'<div class="wp-block-heureux-mix-custom-navigation" data-wp-interactive="burgerToggle" data-wp-context="{ "isVisible": false }">
             <button class="wp-block-heureux-mix-custom-navigation__button" data-wp-on--click="actions.toggle">
@@ -151,13 +156,13 @@ function heureux_mix_add_anchor_to_heading($content)
 	if (is_single()) {
 		$updated_content = '';
 
-		// == Parse the content to get all blocks
+		# Parse the content to get all blocks
 		$blocks = parse_blocks($content);
 
 		foreach ($blocks as &$block) {
-			// == Check if the block is a heading and specifically an <h2>
+			# Check if the block is a heading and specifically an <h2>
 			if ($block['blockName'] === 'core/heading' && strpos($block['innerContent'][0], '<h2') !== false) {
-				// Extract the heading text to generate an ID
+				# Extract the heading text to generate an ID
 				preg_match('/<h2[^>]*>(.*?)<\/h2>/', $block['innerContent'][0], $matches);
 				if (!empty($matches[1])) {
 					$heading_text = sanitize_title($matches[1]);
@@ -169,7 +174,7 @@ function heureux_mix_add_anchor_to_heading($content)
 			}
 		}
 
-		// Reconstruct the content from the modified blocks
+		# Reconstruct the content from the modified blocks
 		foreach ($blocks as $block) {
 			$updated_content .= render_block($block);
 		}
