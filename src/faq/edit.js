@@ -2,9 +2,13 @@ import "./editor.scss";
 
 import { __ } from "@wordpress/i18n";
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
-import { useSelect, useDispatch } from "@wordpress/data";
-import { Spinner, SelectControl, PanelBody } from "@wordpress/components";
-import { useEffect } from "@wordpress/element";
+import { useSelect } from "@wordpress/data";
+import {
+	Spinner,
+	SelectControl,
+	Panel,
+	PanelBody,
+} from "@wordpress/components";
 
 export default function Edit(props) {
 	const blockProps = useBlockProps();
@@ -36,11 +40,10 @@ export default function Edit(props) {
 				["question-taxonomy"]: taxonomy, // Filter by taxonomy
 			});
 		},
-		[taxonomy],
+		[questionTaxonomy, taxonomy],
 	);
 
 	// == Populate options for SearchControl
-
 	if (questionTaxonomy) {
 		selectOptions.push({ value: "all", label: "All" });
 		questionTaxonomy.forEach((taxonomy) => {
@@ -60,14 +63,16 @@ export default function Edit(props) {
 	// == Create InspectorControls
 	const inspectorControls = (
 		<InspectorControls>
-			<PanelBody title="FAQ Settings">
-				<SelectControl
-					value={taxonomy || 0}
-					options={selectOptions}
-					label={__("Taxonomy filters", "heureux-mix")}
-					onChange={onTaxonomyChange}
-				/>
-			</PanelBody>
+			<Panel>
+				<PanelBody title="FAQ Settings">
+					<SelectControl
+						value={taxonomy || 0}
+						options={selectOptions}
+						label={__("Taxonomy filters", "heureux-mix")}
+						onChange={onTaxonomyChange}
+					/>
+				</PanelBody>
+			</Panel>
 		</InspectorControls>
 	);
 
@@ -75,6 +80,8 @@ export default function Edit(props) {
 	if (!questions) {
 		return (
 			<div {...blockProps}>
+				{inspectorControls}
+
 				<Spinner />
 			</div>
 		);
@@ -84,6 +91,8 @@ export default function Edit(props) {
 	if (questions.length === 0) {
 		return (
 			<div {...blockProps}>
+				{inspectorControls}
+
 				<p>No questions found.</p>
 			</div>
 		);
