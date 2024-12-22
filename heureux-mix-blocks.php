@@ -6,7 +6,7 @@
  * Requires at least: 6.6
  * Requires PHP:      7.2
  * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Author:            Valentin Grenier • Studio Val
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       heureux-mix
@@ -14,7 +14,6 @@
  * @package StudioVal
  */
 
-use function Avifinfo\read;
 
 if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
@@ -42,14 +41,14 @@ add_action('init', 'heureux_mix_blocks_init');
 // == Server side rendering for FAQ block
 function heureux_mix_blocks_render_faq($attributes)
 {
-	// == Default query arguments
+	# Default query arguments
 	$args = array(
 		'post_type' => 'question',
 		'posts_per_page' => -1,
 		'post_status' => 'publish',
 	);
 
-	// == Check if a taxonomy is selected in block attributes and add it to the query
+	# Check if a taxonomy is selected in block attributes and add it to the query
 	if ($attributes['taxonomy'] !== "all") {
 		$args['tax_query'] = array(
 			array(
@@ -60,7 +59,7 @@ function heureux_mix_blocks_render_faq($attributes)
 		);
 	}
 
-	// == Fetch filtered questions
+	# Fetch filtered questions
 	$questions = get_posts($args);
 
 	if (count($questions) == 0) {
@@ -76,7 +75,6 @@ function heureux_mix_blocks_render_faq($attributes)
 
 		$markup .= '<div data-wp-interactive="faqToggle"' . $context . ' data-wp-watch="callbacks.logIsOpen" data-wp-class--is-opened="context.isOpen" class="faq__item">';
 		$markup .= '<span data-wp-on--click="actions.toggle" class="faq__question">' . $question_title . '</span>';
-		//$markup .= '<div class="faq__answer" data-wp-bind--hidden="!context.isOpen">' . $question_content . '</div>';
 		$markup .= '<div class="faq__answer">' . $question_content . '</div>';
 		$markup .= '</div>';
 	}
