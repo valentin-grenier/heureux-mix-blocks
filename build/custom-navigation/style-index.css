@@ -1,8 +1,16 @@
 /*!*********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/custom-navigation/style.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************/
+.wp-block-heureux-mix-custom-navigation {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
 .wp-block-heureux-mix-custom-navigation__button {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  right: 3.5rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -15,6 +23,7 @@
   color: var(--wp--preset--color--text);
   cursor: pointer;
   z-index: 9999;
+  transform: translateY(-50%);
 }
 .wp-block-heureux-mix-custom-navigation__button-icon {
   display: flex;
@@ -28,16 +37,16 @@
 .wp-block-heureux-mix-custom-navigation__content {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
   background: var(--wp--preset--color--primary-light);
-  width: 100%;
+  width: 110%;
   height: 100vh;
-  transform: translateY(-100%);
-  transition: all 500ms cubic-bezier(1, 0, 0.6, 1);
+  transform: translate(-50%, -125%);
+  transition: all 800ms cubic-bezier(1, 0, 0.6, 1);
   overflow: hidden;
 }
 .wp-block-heureux-mix-custom-navigation__content.is-visible {
-  transform: translate(0);
+  transform: translate(-50%, -10%);
 }
 .wp-block-heureux-mix-custom-navigation__menu {
   position: absolute;
@@ -73,9 +82,16 @@
   position: absolute;
   left: 120%;
 }
+.wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li {
+  opacity: 0.25;
+  transition: all 400ms;
+}
 .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li a {
   text-align: left;
   text-wrap: nowrap;
+}
+.wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li:hover {
+  opacity: 1;
 }
 .wp-block-heureux-mix-custom-navigation__logo {
   position: absolute;
@@ -108,7 +124,7 @@
   .wp-block-heureux-mix-custom-navigation__menu ul li.has-child {
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     text-align: center;
   }
   .wp-block-heureux-mix-custom-navigation__menu ul li a {
@@ -119,7 +135,10 @@
   .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu {
     position: relative;
     left: 0;
-    gap: 1.5rem;
+    gap: 1rem;
+  }
+  .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li {
+    opacity: 1;
   }
   .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li a {
     font-size: 2.5rem;
@@ -127,6 +146,12 @@
   }
 }
 @media screen and (max-width: 576px) {
+  .wp-block-heureux-mix-custom-navigation__content {
+    height: 110vh;
+  }
+  .wp-block-heureux-mix-custom-navigation__content.is-visible {
+    transform: translate(-54%, -10%);
+  }
   .wp-block-heureux-mix-custom-navigation__menu ul li a {
     font-size: 2rem;
   }

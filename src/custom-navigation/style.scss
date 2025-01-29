@@ -1,6 +1,13 @@
 .wp-block-heureux-mix-custom-navigation {
+	position: fixed;
+	width: 100%;
+	display: flex;
+	justify-content: end;
+
 	&__button {
-		position: relative;
+		position: absolute;
+		top: 50%;
+		right: 3.5rem;
 		display: flex;
 		align-items: center;
 		gap: 0.75rem;
@@ -13,6 +20,7 @@
 		color: var(--wp--preset--color--text);
 		cursor: pointer;
 		z-index: 9999;
+		transform: translateY(-50%);
 
 		&-icon {
 			display: flex;
@@ -29,16 +37,16 @@
 	&__content {
 		position: absolute;
 		top: 0;
-		left: 0;
+		left: 50%;
 		background: var(--wp--preset--color--primary-light);
-		width: 100%;
+		width: 110%;
 		height: 100vh;
-		transform: translateY(-100%);
-		transition: all 500ms cubic-bezier(1, 0, 0.6, 1);
+		transform: translate(-50%, -125%);
+		transition: all 800ms cubic-bezier(1, 0, 0.6, 1);
 		overflow: hidden;
 
 		&.is-visible {
-			transform: translate(0);
+			transform: translate(-50%, -10%);
 		}
 	}
 
@@ -80,9 +88,16 @@
 				left: 120%;
 
 				li {
+					opacity: 0.25;
+					transition: all 400ms;
+
 					a {
 						text-align: left;
 						text-wrap: nowrap;
+					}
+
+					&:hover {
+						opacity: 1;
 					}
 				}
 			}
@@ -134,7 +149,7 @@
 					&.has-child {
 						flex-direction: column;
 						justify-content: center;
-						gap: 2rem;
+						gap: 1rem;
 						text-align: center;
 					}
 
@@ -148,9 +163,11 @@
 				&.wp-block-navigation-submenu {
 					position: relative;
 					left: 0;
-					gap: 1.5rem;
+					gap: 1rem;
 
 					li {
+						opacity: 1;
+
 						a {
 							font-size: 2.5rem;
 							text-align: center;
@@ -162,6 +179,13 @@
 	}
 
 	@media screen and (max-width: 576px) {
+		&__content {
+			height: 110vh;
+
+			&.is-visible {
+				transform: translate(-54%, -10%);
+			}
+		}
 		&__menu {
 			ul {
 				li {
