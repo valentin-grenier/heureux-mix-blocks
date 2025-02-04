@@ -120,6 +120,7 @@
   }
   .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-menu, .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu {
     align-items: center;
+    gap: 1rem;
   }
   .wp-block-heureux-mix-custom-navigation__menu ul li.has-child {
     flex-direction: column;
@@ -128,9 +129,13 @@
     text-align: center;
   }
   .wp-block-heureux-mix-custom-navigation__menu ul li a {
-    font-size: 3rem;
+    font-family: var(--wp--preset--font-family--inter);
+    font-size: 1.25rem;
     text-align: center;
     text-wrap: nowrap;
+  }
+  .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-menu li a {
+    font-weight: 600;
   }
   .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu {
     position: relative;
@@ -138,11 +143,11 @@
     gap: 1rem;
   }
   .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li {
+    font-size: 1.15rem;
     opacity: 1;
   }
   .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li a {
-    font-size: 2.5rem;
-    text-align: center;
+    font-weight: 400;
   }
 }
 @media screen and (max-width: 576px) {
@@ -151,11 +156,5 @@
   }
   .wp-block-heureux-mix-custom-navigation__content.is-visible {
     transform: translate(54%, -10%);
-  }
-  .wp-block-heureux-mix-custom-navigation__menu ul li a {
-    font-size: 2rem;
-  }
-  .wp-block-heureux-mix-custom-navigation__menu ul.wp-block-navigation-submenu li a {
-    font-size: 1.75rem;
   }
 }
