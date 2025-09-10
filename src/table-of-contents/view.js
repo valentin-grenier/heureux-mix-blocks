@@ -28,6 +28,9 @@ function cleanString(input) {
 	// == 4. Replace double hyphens with single hyphen
 	cleaned = cleaned.replace(/--+/g, "-");
 
-	// == 5. Convert to lowercase (optional, for URLs or consistency)
+	// == 5. Trim hyphens from start and end
+	cleaned = cleaned.replace(/^-+|-+$/g, "");
+
+	// == 6. Convert to lowercase (optional, for URLs or consistency)
 	return cleaned.toLowerCase();
 }
