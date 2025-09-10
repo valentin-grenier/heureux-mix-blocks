@@ -23,8 +23,11 @@ function cleanString(input) {
 	const spacesReplaced = normalized.replace(/\s+/g, "-");
 
 	// == 3. Remove special characters (keep letters, numbers, dashes)
-	const cleaned = spacesReplaced.replace(/[^a-zA-Z0-9\-]/g, "");
+	let cleaned = spacesReplaced.replace(/[^a-zA-Z0-9\-]/g, "");
 
-	// == 4. Convert to lowercase (optional, for URLs or consistency)
+	// == 4. Replace double hyphens with single hyphen
+	cleaned = cleaned.replace(/--+/g, "-");
+
+	// == 5. Convert to lowercase (optional, for URLs or consistency)
 	return cleaned.toLowerCase();
 }

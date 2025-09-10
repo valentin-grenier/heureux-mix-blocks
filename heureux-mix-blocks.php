@@ -162,9 +162,13 @@ function heureux_mix_add_anchor_to_heading($content)
 			if ($block['blockName'] === 'core/heading' && strpos($block['innerContent'][0], '<h2') !== false) {
 				# Extract the heading text to generate an ID
 				preg_match('/<h2[^>]*>(.*?)<\/h2>/', $block['innerContent'][0], $matches);
+
 				if (!empty($matches[1])) {
 					$heading_text = sanitize_title($matches[1]);
 					$anchor = 'id="' . $heading_text . '"';
+
+					// Replace double hyphens with single hyphen
+					$anchor = str_replace('--', '-', $anchor);
 
 					// Add the anchor to the <h2> tag
 					$block['innerContent'][0] = str_replace('<h2', '<h2 ' . $anchor, $block['innerContent'][0]);
